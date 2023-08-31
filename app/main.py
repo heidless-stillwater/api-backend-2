@@ -11,13 +11,12 @@ def hello():
 
 class HelloWorld(Resource):
   def get(self):
-#    return {"data": "Hello World"}
-
-    return render_template("index.html")
+    return {"data": "Hello World"}
+#    return render_template("index.html")
 
 api.add_resource(HelloWorld, '/helloworld')
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=5000)
+  app.run(host='0.0.0.0', port=5000, debug=True)
   
   

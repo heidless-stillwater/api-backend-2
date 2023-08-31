@@ -1,5 +1,7 @@
 ## Compose sample application
 
+https://github.com/docker/awesome-compose/tree/master/flask
+
 ### Use with Docker Development Environments
 
 You can open this sample in the Dev Environments feature of Docker Desktop version 4.12 or later.
@@ -8,15 +10,17 @@ You can open this sample in the Dev Environments feature of Docker Desktop versi
 
 ### Python/Flask application
 
-Project structure:
 ```
+Project structure:
 .
-├── compose.yaml
-├── app
-    ├── Dockerfile
-    ├── requirements.txt
-    └── app.py
-
+├── Dockerfile
+├── main.py
+├── requirements.txt
+├── templates
+│   ├── index.html
+│   ├── orig-index.html
+│   └── tst.html
+└── test.py
 ```
 
 [_compose.yaml_](compose.yaml)
@@ -27,7 +31,7 @@ services:
      context: app
      target: builder
     ports: 
-      - '8000:8000'
+      - '5000:5000'
 ```
 
 ## Deploy with docker compose
@@ -41,6 +45,21 @@ $ docker compose up -d
 [+] Running 2/2
  ⠿ Network flask_default  Created                                                                                                                                                                                                          0.0s
  ⠿ Container flask-web-1  Started
+```
+
+# manage resources
+```
+# stop ALL containers
+docker stop $(docker ps -a -q)
+
+# remove ALL containers STOPped containers
+docker rm $(docker ps -a -q)
+
+# remove IMAGE
+docker image rm api-backend-2-web
+
+# remove ALL UNUSED containers/images
+docker system prune
 ```
 
 ## Expected result
